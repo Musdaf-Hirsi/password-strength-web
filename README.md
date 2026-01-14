@@ -55,3 +55,30 @@ Memory note: RockYou contains millions of entries and can take hundreds of MB of
 
 ## Defensive Scope
 This project is intentionally defensive: it evaluates password strength and checks against public breach/common lists. It does **not** attempt to guess, crack, or brute-force passwords.
+
+## Deployment (Render)
+
+### Build Command
+```
+pip install -r requirements.txt
+```
+
+### Start Command
+```
+gunicorn -b 0.0.0.0:$PORT "app:create_app()"
+```
+
+### Environment Variables
+| Variable | Value |
+|----------|-------|
+| `HIBP_ENABLED` | `false` (or `true` to enable breach check) |
+| `SECRET_KEY` | Generate a random string (e.g., `python3 -c "import secrets; print(secrets.token_hex(32))"`) |
+| `ROCKYOU_PATH` | Optional; leave unset if no blocklist file is deployed |
+
+### Verify Deployment
+```bash
+curl https://<your-app>.onrender.com/healthz
+curl -X POST https://<your-app>.onrender.com/check \
+  -H "Content-Type: application/json" \
+  -d '{"password":"test123"}'
+```

@@ -2,4 +2,4 @@ Flask
 Flask-Limiter
 requests
 zxcvbn
-pytest
+gunicorn

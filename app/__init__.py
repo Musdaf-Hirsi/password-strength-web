@@ -12,6 +12,7 @@ def create_app() -> Flask:
     app = Flask(__name__)
     app.config["JSON_SORT_KEYS"] = False
     app.config["MAX_CONTENT_LENGTH"] = 2048
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key-change-me")
     app.config["HIBP_ENABLED"] = os.getenv("HIBP_ENABLED", "false").lower() == "true"
     app.config["VERSION"] = os.getenv("APP_VERSION", "0.1.0")
     app.config["ROCKYOU_PATH"] = os.getenv("ROCKYOU_PATH", str(DEFAULT_ROCKYOU_PATH))
