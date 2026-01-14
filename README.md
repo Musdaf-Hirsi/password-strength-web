@@ -1,11 +1,29 @@
 # Password Strength Web App
 
-Local educational tool. Don’t enter real passwords.
+**Live Demo:** https://password-strength-web-qf0n.onrender.com
+
+A defensive password strength checker built with Flask. Evaluates passwords using entropy analysis, pattern detection, and breach-list lookups — without ever storing or logging passwords.
+
+> ⚠️ Educational tool. Don't enter real passwords.
+
+## Features
+- **zxcvbn scoring** — entropy + pattern detection
+- **Rules-based checks** — length, character variety, repeats, sequences, keyboard patterns
+- **Breach check (optional)** — Have I Been Pwned API via k-anonymity
+- **Rate limiting** — 10 requests/min per IP
+- **Security headers** — CSP, X-Frame-Options, etc.
+- **JSON API** — POST `/check` returns structured feedback
+
+## Tech Stack
+- Python / Flask / Gunicorn
+- zxcvbn, Flask-Limiter, requests
+- Deployed on Render
 
 ## Overview
 - Defensive-only password evaluation (no cracking or brute force).
 - zxcvbn scoring plus extra rules (length, variety, repeats, sequences, keyboard patterns).
 - Optional common-password and breached-password checks.
+
 
 ## Setup
 ```bash
